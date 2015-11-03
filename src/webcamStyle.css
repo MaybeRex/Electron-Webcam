@@ -11,8 +11,6 @@ body {
 
 body *{
     position: relative;
-    z-index: 500;
-
 }
 
 .liveVideo{

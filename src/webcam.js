@@ -1,4 +1,3 @@
-var remote = require('remote');
 
 window.onload=function(e){
     init();
@@ -14,24 +13,11 @@ function init(){
 
 }
 
-document.querySelector('#closeButton').addEventListener(
-    'click',
-    function (e) {
-        console.log('div clicked');
-        var window = remote.getCurrentWindow();
-        window.close();
-    }
-);
-
 function webcamPlayer(){
     //console.log('inside webcamPlayer');
     var errorCallback = function(err){
-        console.log('Something broke...', err);
+        console.log('Rejected', err);
     }
-    navigator.getUserMedia  = navigator.getUserMedia ||
-                              navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia ||
-                              navigator.msGetUserMedia;
 
     var video = document.querySelector('#liveVideo');
 
@@ -53,7 +39,7 @@ function webcamPlayer(){
             errorCallback
         );
     } else {
-      video.src = 'somevideo.webm'; // fallback.
+      console.log('no camara found'); // fallback.
     }
 }
 
