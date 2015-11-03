@@ -14,6 +14,15 @@ function init(){
 
 }
 
+document.querySelector('#closeButton').addEventListener(
+    'click',
+    function (e) {
+        console.log('div clicked');
+        var window = remote.getCurrentWindow();
+        window.close();
+    }
+);
+
 function webcamPlayer(){
     //console.log('inside webcamPlayer');
     var errorCallback = function(err){
