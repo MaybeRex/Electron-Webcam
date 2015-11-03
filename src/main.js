@@ -25,7 +25,7 @@ app.on('ready', function() {
       {
           width: 1280,
           height: 720,
-          frame: false
+          frame: true
       }
   );
 
