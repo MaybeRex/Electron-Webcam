@@ -23,8 +23,23 @@ body {
     transition: background 500ms;
 }
 
+.theatreMode{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    top: calc(5% - 24px);
+    left: calc(5%);
+    z-index: 1000;
+    background: rgba(19, 64, 199,0);
+    transition: background 500ms;
+}
+
 .closeButton:hover{
     background: rgba(255, 0, 0, 0.3);
+}
+
+.theatreMode:hover{
+    background: rgba(19, 64, 199, 0.3);
 }
 
 .dragableZone{

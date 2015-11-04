@@ -17,18 +17,33 @@ function init(){
 
 function controls(){
     var close = document.querySelector('#closeButton');
+    var theatre = document.querySelector('#theatreMode');
+    var window = remote.getCurrentWindow();
 
     close.addEventListener(
         'click',
         function(e){
-            var window = remote.getCurrentWindow();
             window.close();
+        }
+    );
+
+    theatreMode.addEventListener(
+        'click',
+        function(e){
+            var window = remote.getCurrentWindow();
+            if (!window.isFullScreen()){
+                window.setResizable(true);
+                window.setFullScreen(true);
+            }else{
+                window.setFullScreen(false);
+                window.setResizable(false);
+            }
         }
     );
 }
 
 function webcamPlayer(){
-    console.log('inside webcamPlayer');
+    //console.log('inside webcamPlayer');
     var errorCallback = function(err){
         console.log('Rejected', err);
     }
