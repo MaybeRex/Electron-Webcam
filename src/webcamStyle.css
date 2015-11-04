@@ -1,20 +1,34 @@
 
 body {
-    height: 100%;
-    width: 100%;
     background-color: black;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    -webkit-app-region: drag;
-}
-
-body *{
-    position: relative;
 }
 
 .liveVideo{
     height: 100%;
     width: 100%;
+}
 
+.closeButton{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    top: calc(5% - 20px);
+    left: calc(1%);
+    z-index: 1000;
+    border-radius: 35px;
+    background: rgba(199, 43, 19,0);
+    transition: background 500ms;
+
+}
+
+.closeButton:hover{
+    background: rgba(255, 0, 0, 0.6);
+}
+
+
+.hovered{
+    opacity: 1;
 }
