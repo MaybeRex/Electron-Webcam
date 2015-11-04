@@ -16,7 +16,6 @@ function init(){
 }
 
 function controls(){
-
     var close = document.querySelector('#closeButton');
 
     close.addEventListener(

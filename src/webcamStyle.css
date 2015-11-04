@@ -15,20 +15,31 @@ body {
     position: absolute;
     height: 35px;
     width: 35px;
-    top: calc(5% - 20px);
+    top: calc(5% - 24px);
     left: calc(1%);
     z-index: 1000;
     border-radius: 35px;
     background: rgba(199, 43, 19,0);
     transition: background 500ms;
-
 }
 
 .closeButton:hover{
-    background: rgba(255, 0, 0, 0.6);
+    background: rgba(255, 0, 0, 0.3);
 }
 
+.dragableZone{
+    position: absolute;
+    -webkit-app-region: drag;
+    z-index: 1000;
+    height: 100%;
+    width: 50%;
+    left:50%;
+    font-size: 44px;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 500ms;
+}
 
-.hovered{
-    opacity: 1;
+.dragableZone:hover{
+    background-color: rgba(0, 0, 0,0.2);
 }
