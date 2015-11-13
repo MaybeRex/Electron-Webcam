@@ -9,6 +9,8 @@ var videoSource = [];
 var videoIndex = 0;
 var audioIndex = 0;
 
+var videoSourceLength = 0;
+
 window.onload=function(e){
     init();
     controls();
@@ -65,6 +67,8 @@ function webcamPrep(){
     MediaStreamTrack.getSources(
         function(sourceInfos){
             var tempVideoIndex = 0;
+            videoSourceLength = sourceInfos.length;
+
             for (var i = 0; i != sourceInfos.length; ++i){
                 //console.log(sourceInfos[i]);
                 if (sourceInfos[i].kind === 'audio'){
@@ -98,7 +102,7 @@ function successCallback(stream){
 
 function playVideo(){
 
-    videoIndex = videoIndex % 2;
+    videoIndex = videoIndex % videoSourceLength;
 
     console.log('video source ID', videoSource[videoIndex].id);
     var constraints = {
