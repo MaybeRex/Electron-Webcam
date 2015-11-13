@@ -1,9 +1,18 @@
+//Webcam Video Player
+//Mario Solorzano
+
 var remote = require('remote');
+
+var audioSource = [];
+var videoSource = [];
+
+var videoIndex = 0;
+var audioIndex = 0;
 
 window.onload=function(e){
     init();
     controls();
-    webcamPlayer();
+    webcamPrep();
 }
 
 function init(){
@@ -42,34 +51,62 @@ function controls(){
     );
 }
 
-function webcamPlayer(){
-    //console.log('inside webcamPlayer');
-    var errorCallback = function(err){
-        console.log('Rejected', err);
-    }
+function webcamPrep(){
+    MediaStreamTrack.getSources(
+        function(sourceInfos){
+            for (var i = 0; i != sourceInfos.length; ++i){
+                //console.log(sourceInfos[i]);
+                if (sourceInfos[i].kind === 'audio'){
+                    //console.log('audio source found: ', sourceInfos);
+                    audioSource[audioIndex] = sourceInfos[i];
+                    audioIndex++;
 
-    var video = document.querySelector('#liveVideo');
+                } else if (sourceInfos[i].kind === 'video') {
+                    //console.log('video source found: ', sourceInfos);
+                    videoSource[videoIndex] = sourceInfos[i];
 
-    if (navigator.webkitGetUserMedia) {
-        navigator.webkitGetUserMedia(
-            {
-                audio: false,
-                video:
-                {
-                    mandatory: {
-                        minWidth: 1280,
-                        minHeight: 720
-                    }
+                    videoIndex++;
+
                 }
-            },
-            function(stream) {
-                video.src = window.URL.createObjectURL(stream);
-            },
-            errorCallback
-        );
-    } else {
-      console.log('no camara found'); // fallback.
+            }
+            audioIndex = 0;
+            videoIndex = 0;
+            //console.log('video ID', videoSource[0]);
+            playVideo();
+        }
+    );
+}
+
+function errorCallback(err){
+    console.log('Rejected', err);
+}
+
+function successCallback(stream){
+    var video = document.querySelector('#liveVideo');
+    video.src = window.URL.createObjectURL(stream);
+}
+
+function playVideo(){
+
+    console.log('video source ID', videoSource[videoIndex].id);
+    var constraints = {
+        audio: false,
+        video: {
+            mandatory: {
+                minWidth: 1200,
+                minHeight: 720,
+                sourceId:videoSource[videoIndex].id
+            }
+        }
     }
+
+
+    navigator.webkitGetUserMedia(
+        constraints,
+        successCallback,
+        errorCallback
+    );
+
 }
 
 
