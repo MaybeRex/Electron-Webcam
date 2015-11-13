@@ -3,12 +3,8 @@
 
 var remote = require('remote');
 
-var audioSource = [];
 var videoSource = [];
-
 var videoIndex = 0;
-var audioIndex = 0;
-
 var videoSourceLength = 0;
 
 window.onload=function(e){
@@ -36,8 +32,8 @@ function controls(){
         'click',
         function(e){
             videoIndex++;
-            console.log(videoIndex % 2);
-            webcamPrep();
+            //console.log(videoIndex % 2);
+            playVideo();
         }
     )
 
@@ -67,25 +63,17 @@ function webcamPrep(){
     MediaStreamTrack.getSources(
         function(sourceInfos){
             var tempVideoIndex = 0;
-            videoSourceLength = sourceInfos.length;
 
             for (var i = 0; i != sourceInfos.length; ++i){
                 //console.log(sourceInfos[i]);
-                if (sourceInfos[i].kind === 'audio'){
-                    //console.log('audio source found: ', sourceInfos);
-                    audioSource[audioIndex] = sourceInfos[i];
-                    audioIndex++;
-
-                } else if (sourceInfos[i].kind === 'video') {
+                if (sourceInfos[i].kind === 'video') {
                     //console.log('video source found: ', sourceInfos);
                     videoSource[tempVideoIndex] = sourceInfos[i];
-
+                    videoSourceLength++;
                     tempVideoIndex++;
 
                 }
             }
-            audioIndex = 0;
-            //console.log('video ID', videoSource[0]);
             playVideo();
         }
     );
@@ -103,13 +91,12 @@ function successCallback(stream){
 function playVideo(){
 
     videoIndex = videoIndex % videoSourceLength;
-
-    console.log('video source ID', videoSource[videoIndex].id);
+    console.log('current video source :',videoSource[videoIndex]);
     var constraints = {
         audio: false,
         video: {
             mandatory: {
-                minWidth: 1200,
+                minWidth: 1280,
                 minHeight: 720,
                 sourceId:videoSource[videoIndex].id
             }

@@ -9,6 +9,7 @@ body {
 .liveVideo{
     height: 100%;
     width: 100%;
+    -webkit-transform: scaleX(-1);
 }
 
 .closeButton{
@@ -28,7 +29,7 @@ body {
     height: 35px;
     width: 35px;
     top: calc(5% - 24px);
-    left: calc(5%);
+    left: calc(4% + 10px);
     z-index: 1000;
     background: rgba(19, 64, 199,0);
     transition: background 500ms;
@@ -42,7 +43,7 @@ body {
 	border-left: 30px solid transparent;
 	border-bottom: 15px solid transparent;
     top: calc(5% - 24px);
-    left: calc(10% - 15px);
+    left: calc(10% - 10px);
     z-index: 1000;
     transition: border-left 500ms;
 }
