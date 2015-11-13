@@ -27,7 +27,17 @@ function init(){
 function controls(){
     var close = document.querySelector('#closeButton');
     var theatre = document.querySelector('#theatreMode');
+    var toggle = document.querySelector('#toggleVideoSource');
     var window = remote.getCurrentWindow();
+
+    toggle.addEventListener(
+        'click',
+        function(e){
+            videoIndex++;
+            console.log(videoIndex % 2);
+            webcamPrep();
+        }
+    )
 
     close.addEventListener(
         'click',
@@ -54,6 +64,7 @@ function controls(){
 function webcamPrep(){
     MediaStreamTrack.getSources(
         function(sourceInfos){
+            var tempVideoIndex = 0;
             for (var i = 0; i != sourceInfos.length; ++i){
                 //console.log(sourceInfos[i]);
                 if (sourceInfos[i].kind === 'audio'){
@@ -63,14 +74,13 @@ function webcamPrep(){
 
                 } else if (sourceInfos[i].kind === 'video') {
                     //console.log('video source found: ', sourceInfos);
-                    videoSource[videoIndex] = sourceInfos[i];
+                    videoSource[tempVideoIndex] = sourceInfos[i];
 
-                    videoIndex++;
+                    tempVideoIndex++;
 
                 }
             }
             audioIndex = 0;
-            videoIndex = 0;
             //console.log('video ID', videoSource[0]);
             playVideo();
         }
@@ -87,6 +97,8 @@ function successCallback(stream){
 }
 
 function playVideo(){
+
+    videoIndex = videoIndex % 2;
 
     console.log('video source ID', videoSource[videoIndex].id);
     var constraints = {

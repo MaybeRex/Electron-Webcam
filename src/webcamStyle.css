@@ -34,12 +34,29 @@ body {
     transition: background 500ms;
 }
 
+.toggleVideoSource{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-top: 15px solid transparent;
+	border-left: 30px solid transparent;
+	border-bottom: 15px solid transparent;
+    top: calc(5% - 24px);
+    left: calc(10% - 15px);
+    z-index: 1000;
+    transition: border-left 500ms;
+}
+
+.toggleVideoSource:hover{
+    border-left: 30px solid rgba(255, 207, 3, 0.7);
+}
+
 .closeButton:hover{
-    background: rgba(255, 0, 0, 0.3);
+    background: rgba(255, 0, 0, 0.5);
 }
 
 .theatreMode:hover{
-    background: rgba(19, 64, 199, 0.3);
+    background: rgba(19, 64, 199, 0.7);
 }
 
 .dragableZone{
