@@ -27,7 +27,7 @@ app.on('ready', function() {
           height: 720,
           frame: false,
           resizable:false,
-          alwaysOnTop:true
+          alwaysOnTop:false
       }
   );
 

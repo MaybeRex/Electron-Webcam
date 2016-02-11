@@ -1,11 +1,10 @@
-//Webcam Video Player
-//Mario Solorzano
+'use strict';
 
 var remote = require('remote');
 
-var videoSource = [];
-var videoIndex = 0;
-var videoSourceLength = 0;
+let videoSource = [];
+let videoIndex = 0;
+let videoSourceLength = 0;
 
 window.onload=function(e){
     init();
@@ -23,16 +22,15 @@ function init(){
 }
 
 function controls(){
-    var close = document.querySelector('#closeButton');
-    var theatre = document.querySelector('#theatreMode');
-    var toggle = document.querySelector('#toggleVideoSource');
-    var window = remote.getCurrentWindow();
+    const close = document.querySelector('#closeButton');
+    const theatre = document.querySelector('#theatreMode');
+    const toggle = document.querySelector('#toggleVideoSource');
+    const window = remote.getCurrentWindow();
 
     toggle.addEventListener(
         'click',
         function(e){
             videoIndex++;
-            //console.log(videoIndex % 2);
             playVideo();
         }
     )
@@ -64,7 +62,7 @@ function webcamPrep(){
         function(sourceInfos){
             var tempVideoIndex = 0;
 
-            for (var i = 0; i != sourceInfos.length; ++i){
+            for (let i = 0; i != sourceInfos.length; ++i){
                 //console.log(sourceInfos[i]);
                 if (sourceInfos[i].kind === 'video') {
                     //console.log('video source found: ', sourceInfos);
@@ -84,7 +82,7 @@ function errorCallback(err){
 }
 
 function successCallback(stream){
-    var video = document.querySelector('#liveVideo');
+    const video = document.querySelector('#liveVideo');
     video.src = window.URL.createObjectURL(stream);
 }
 
@@ -92,7 +90,7 @@ function playVideo(){
 
     videoIndex = videoIndex % videoSourceLength;
     console.log('current video source :',videoSource[videoIndex]);
-    var constraints = {
+    const constraints = {
         audio: false,
         video: {
             mandatory: {

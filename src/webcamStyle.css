@@ -14,22 +14,22 @@ body {
 
 .closeButton{
     position: absolute;
-    height: 35px;
-    width: 35px;
-    top: calc(5% - 24px);
-    left: calc(1%);
+    height: 2em;
+    width: 2em;
+    top: calc(5% - 1.5em);
+    left: 1em;
     z-index: 1000;
-    border-radius: 35px;
+    border-radius: 2em;
     background: rgba(199, 43, 19,0);
     transition: background 500ms;
 }
 
 .theatreMode{
     position: absolute;
-    height: 35px;
-    width: 35px;
-    top: calc(5% - 24px);
-    left: calc(4% + 10px);
+    height: 2em;
+    width: 2em;
+    top: calc(5% - 1.5em);
+    left: 4em;
     z-index: 1000;
     background: rgba(19, 64, 199,0);
     transition: background 500ms;
@@ -37,19 +37,17 @@ body {
 
 .toggleVideoSource{
     position: absolute;
-    height: 0px;
-    width: 0px;
-    border-top: 15px solid transparent;
-	border-left: 30px solid transparent;
-	border-bottom: 15px solid transparent;
-    top: calc(5% - 24px);
-    left: calc(10% - 10px);
+    border-top: 1em solid transparent;
+	border-left: 2em solid transparent;
+	border-bottom: 1em solid transparent;
+    top: calc(5% - 1.5em);
+    left: 7em;
     z-index: 1000;
     transition: border-left 500ms;
 }
 
 .toggleVideoSource:hover{
-    border-left: 30px solid rgba(255, 207, 3, 0.7);
+    border-left: 2em solid rgba(255, 207, 3, 0.7);
 }
 
 .closeButton:hover{
@@ -66,13 +64,17 @@ body {
     z-index: 1000;
     height: 100%;
     width: 50%;
+    font-size: 5em;
+    line-height: 9em;
+    font-family: impact, ubuntu, helvetica;
     left:50%;
-    font-size: 44px;
     text-align: center;
     background-color: rgba(0,0,0,0);
-    transition: background-color 500ms;
+    color: rgba(0, 0, 0, 0);
+    transition: background-color 500ms, color 500ms;
 }
 
 .dragableZone:hover{
-    background-color: rgba(0, 0, 0,0.2);
+    background-color: rgba(0, 0, 0,0.5);
+    color: rgba(0, 0, 0,1);
 }
